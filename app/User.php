@@ -107,6 +107,16 @@ class User extends Authenticatable
 
 
     /**
+     * Relacion muchos a muchos
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+     public function servicios(){
+
+        return $this->belongsToMany('App\Servicio','user_servicio');
+     }
+
+    /**
+     * Relacion 1 a muchos
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      * Devuelve las incidencias de este user
      */
@@ -114,6 +124,7 @@ class User extends Authenticatable
 
         return $this->hasMany('App\Incidencia');
     }
+
 
 
 

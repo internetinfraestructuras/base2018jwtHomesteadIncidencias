@@ -46,11 +46,64 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('maioris1430'),
         ]);
 
+            //relleno algunos servicios  y enunciados desde aqui al maioris
 
-        /*
-         *         'name', 'email', 'password','tipocliente','nombre_completo','cif','direccion','poblacion','intentoslogin','ipwowzalocal','preciopoblacion',
-    ];
-         */
+            $user = App\User::find(2);
+            $servicio = new \App\Servicio();
+
+            $servicio->servicio='Television';
+            $servicio->save();
+
+            $enunciado = new \App\Enunciado();
+
+            $enunciado->enunciado='Televisión no funciona';
+            $servicio->enunciado()->save($enunciado);
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Pantalla negra';
+            $servicio->enunciado()->save($enunciado);
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Mando a distancia no responde';
+            $servicio->enunciado()->save($enunciado);
+
+            $user->servicios()->save($servicio);
+
+            /**/
+            $servicio = new \App\Servicio();
+            $servicio->servicio='Telefonia';
+            $servicio->save();
+
+            $enunciado = new \App\Enunciado();
+
+            $enunciado->enunciado='Terminal no tiene linea';
+            $servicio->enunciado()->save($enunciado);
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='No funciona servicio despertador';
+            $servicio->enunciado()->save($enunciado);
+
+            $user->servicios()->save($servicio);
+            /**/
+
+
+            /**/
+            $servicio = new \App\Servicio();
+            $servicio->servicio='Internet';
+            $servicio->save();
+
+            $enunciado = new \App\Enunciado();
+
+            $enunciado->enunciado='Cliente no conecta a la wifi';
+            $servicio->enunciado()->save($enunciado);
+             $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Sin Wifi en el Hotel';
+            $servicio->enunciado()->save($enunciado);
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Sin conexión a internet en un equipo';
+            $servicio->enunciado()->save($enunciado);
+
+            $user->servicios()->save($servicio);
+            /**/
+
+
 
 
     }

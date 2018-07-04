@@ -94,6 +94,7 @@ class IncidenciaController extends Controller
         $incidencia = Incidencia::find($idinci);
         $user = User::find($id);
 
+
         return View('incidencia/show')->with('incidencia',$incidencia)->with('user',$user);
     }
 

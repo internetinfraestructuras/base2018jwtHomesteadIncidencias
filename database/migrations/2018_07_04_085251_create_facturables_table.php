@@ -15,7 +15,8 @@ class CreateFacturablesTable extends Migration
     {
         Schema::create('facturables', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('categoria_id');
+            $table->string('facturable');
         });
     }
 

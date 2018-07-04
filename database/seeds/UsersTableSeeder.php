@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('maioris1430'),
         ]);
 
-            //relleno algunos servicios  y enunciados desde aqui al maioris
+            //relleno algunos servicios, enunciados,categorias,problemas y facturables desde aqui al maioris
 
             $user = App\User::find(2);
             $servicio = new \App\Servicio();
@@ -67,7 +67,208 @@ class UsersTableSeeder extends Seeder
 
             $user->servicios()->save($servicio);
 
-            /**/
+            //añado algunas categorias a este tipo de servicio
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Mando IPTV";
+            $servicio->categoria()->save($categoria);
+
+
+                        //añado algunos problemas y soluciones y facturables a esta categoria
+
+                        //problemas
+                        $problema = new \App\Problema();
+                        $problema->problema="Mando sin Pilas";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="Mando desconfigurado";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="Mando averiado";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="Mando desaparecido";
+                        $categoria->problema()->save($problema);
+
+                        //soluciones
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Cambio pilas nuevas";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Reconfigurar Mando";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Sustitucion Mando en garantia";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Reposicion mando sustraido";
+                        $categoria->solucion()->save($solucion);
+
+                        //facturable
+                        $facturable = new \App\Facturable();
+                        $facturable->facturable="Pilas mando a distancia";
+                        $categoria->facturable()->save($facturable);
+
+                        $facturable = new \App\Facturable();
+                        $facturable->facturable="Mando completo por reposicion";
+                        $categoria->facturable()->save($facturable);
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Unidad IPTV";
+            $servicio->categoria()->save($categoria);
+
+
+                        //añado algunos problemas y soluciones y facturables a esta categoria
+
+                        //problemas
+                        $problema = new \App\Problema();
+                        $problema->problema="Sin problema IPTV todo correcto";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="IPTV Bloqueado";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="IPTV no aprovisionado";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="IPTV averiado";
+                        $categoria->problema()->save($problema);
+
+                        $problema = new \App\Problema();
+                        $problema->problema="Mando desaparecido";
+                        $categoria->problema()->save($problema);
+
+                        //soluciones
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Ninguna, todo estaba correcto";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Reinicio IPTV";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Reiniciamos y aprovisiona";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Sustitucion IPTV completo";
+                        $categoria->solucion()->save($solucion);
+
+                        $solucion = new \App\Solucion();
+                        $solucion->solucion="Sustitucion tarjeta SD";
+                        $categoria->solucion()->save($solucion);
+
+                        //facturable
+                        $facturable = new \App\Facturable();
+                        $facturable->facturable="mano de obra 15 minutos";
+                        $categoria->facturable()->save($facturable);
+
+                        $facturable = new \App\Facturable();
+                        $facturable->facturable="tarjeta SD, no en garantia";
+                        $categoria->facturable()->save($facturable);
+
+                        $facturable = new \App\Facturable();
+                        $facturable->facturable="IPTV completo por acto vandalico";
+                        $categoria->facturable()->save($facturable);
+
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Cableado IPTV";
+            $servicio->categoria()->save($categoria);
+
+
+                    //añado algunos problemas y soluciones y facturables a esta categoria
+
+                    //problemas
+                    $problema = new \App\Problema();
+                    $problema->problema="IPTV con cable red desconectado";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="Cable red cortado";
+                    $categoria->problema()->save($problema);
+
+
+                    //soluciones
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Se conecta cable red a IPTV";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Tirar nuevo cable de red";
+                    $categoria->solucion()->save($solucion);
+
+
+                    //facturable
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="Nueva tirada cable de red";
+                    $categoria->facturable()->save($facturable);
+
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="mano de obra 15 minutos";
+                    $categoria->facturable()->save($facturable);
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Television";
+            $servicio->categoria()->save($categoria);
+
+
+                    //añado algunos problemas y soluciones y facturables a esta categoria
+
+                    //problemas
+                    $problema = new \App\Problema();
+                    $problema->problema="HDMI sin señal";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="Cable HDMI desconectado";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="TV sin corriente electrica";
+                    $categoria->problema()->save($problema);
+
+
+
+                    //soluciones
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Conmutamos TV a HDMI";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Reconectamos cable HDMI";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Conectamos TV a la corriente";
+                    $categoria->solucion()->save($solucion);
+
+
+                    //facturable
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="mano de obra 15 minutos";
+                    $categoria->facturable()->save($facturable);
+
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Otros";
+            $servicio->categoria()->save($categoria);
+
+
+        /**/
             $servicio = new \App\Servicio();
             $servicio->servicio='Telefonia';
             $servicio->save();
@@ -81,7 +282,114 @@ class UsersTableSeeder extends Seeder
             $servicio->enunciado()->save($enunciado);
 
             $user->servicios()->save($servicio);
-            /**/
+
+            //añado algunas categorias a este tipo de servicio
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Terminal telefonico";
+            $servicio->categoria()->save($categoria);
+
+
+                    //añado algunos problemas y soluciones y facturables a esta categoria
+
+                    //problemas
+                    $problema = new \App\Problema();
+                    $problema->problema="Terminal averiado por acto vandalico";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="Tecla telefono pisada";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="auricular descolgado";
+                    $categoria->problema()->save($problema);
+
+
+
+                    //soluciones
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Cambiar terminal telefonico";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Despisar tecla telefono";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Colgar auricular";
+                    $categoria->solucion()->save($solucion);
+
+
+                    //facturable
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="mano de obra 15 minutos";
+                    $categoria->facturable()->save($facturable);
+
+
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Cableado Telefónico";
+            $servicio->categoria()->save($categoria);
+
+
+                    //añado algunos problemas y soluciones y facturables a esta categoria
+
+                    //problemas
+                    $problema = new \App\Problema();
+                    $problema->problema="Cable telefono roto";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="Cable telefono desaparecido";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="Error de conexión con ICT";
+                    $categoria->problema()->save($problema);
+
+
+
+                    //soluciones
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Reponer latiguillo telefono";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Recrimpar en ICT";
+                    $categoria->solucion()->save($solucion);
+
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Reconfigurar en ATA";
+                    $categoria->solucion()->save($solucion);
+
+
+                    //facturable
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="latiguillo telefono";
+                    $categoria->facturable()->save($facturable);
+
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="mano de obra 15 minutos";
+                    $categoria->facturable()->save($facturable);
+
+
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Roseta";
+            $servicio->categoria()->save($categoria);
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Ata y Configuracion";
+            $servicio->categoria()->save($categoria);
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Otros";
+            $servicio->categoria()->save($categoria);
+
+
+        /**/
 
 
             /**/
@@ -101,6 +409,47 @@ class UsersTableSeeder extends Seeder
             $servicio->enunciado()->save($enunciado);
 
             $user->servicios()->save($servicio);
+
+            //añado algunas categorias a este tipo de servicio
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Problemas PC";
+            $servicio->categoria()->save($categoria);
+
+
+                    //problemas
+                    $problema = new \App\Problema();
+                    $problema->problema="PC con virus";
+                    $categoria->problema()->save($problema);
+
+                    $problema = new \App\Problema();
+                    $problema->problema="PC desconfigurado";
+                    $categoria->problema()->save($problema);
+
+
+                    //soluciones
+                    $solucion = new \App\Solucion();
+                    $solucion->solucion="Reparar PC";
+                    $categoria->solucion()->save($solucion);
+
+
+                    //facturable
+
+
+                    $facturable = new \App\Facturable();
+                    $facturable->facturable="mano de obra 15 minutos";
+                    $categoria->facturable()->save($facturable);
+
+
+
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Cableado Internet";
+            $servicio->categoria()->save($categoria);
+
+            $categoria = new \App\Categoria();
+            $categoria->categoria="Configuracion Central";
+            $servicio->categoria()->save($categoria);
+
             /**/
 
 

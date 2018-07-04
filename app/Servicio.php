@@ -30,4 +30,13 @@ class Servicio extends Model
         return $this->hasMany('App\Enunciado');
     }
 
+    /**
+     * Cada servicio tiene una serie de categorias de problemas
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categoria(){
+
+        return $this->hasMany('App\Categoria');
+    }
+
 }

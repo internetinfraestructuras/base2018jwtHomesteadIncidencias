@@ -1,0 +1,25 @@
+ip: 192.168.10.50
+memory: 512
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: 'C:\Users\telefonia\base2018jwtHomesteadIncidencias'
+        to: /home/vagrant/base2018jwt
+    -    
+        map: 'C:\Users\telefonia\basetest'
+        to: /home/vagrant/basetest        
+sites:
+    -
+        map: base2018.dev
+        to: /home/vagrant/base2018jwt/public
+    -    
+        map: basetest.dev
+        to: /home/vagrant/basetest/public        
+databases:
+    - homestead
+name: base2018jwt
+hostname: base2018jwt

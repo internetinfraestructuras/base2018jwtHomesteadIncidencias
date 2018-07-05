@@ -43,7 +43,7 @@ class EnunciadoController extends Controller
         //$enunciado->save();
 
         //recupero el servicio que se ha seleccionado
-        $servicio = Servicio::where('servicio', '=', $request->servicio)->first();
+        $servicio = Servicio::find($request->servicio);
 
         //añado el enunciado a dicho servicio
         $servicio->enunciado()->save($enunciado);

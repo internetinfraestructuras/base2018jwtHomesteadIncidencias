@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
-use App\Servicio;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class CategoriaController extends Controller
+class SolucionController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $categorias = Categoria::all();
-
-        return View('categoria/index')->with('categorias',$categorias);
+        //
     }
 
     /**
@@ -23,9 +23,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        $servicios = Servicio::all();
-
-        return View('categoria/create')->with('servicios',$servicios);
+        //
     }
 
     /**
@@ -36,27 +34,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //echo "viene enunciado $request->enunciado --- vinculado a servicio $request->servicio";
-
-        $cat = new Categoria();
-        $cat->categoria=$request->categoria;
-        //$enunciado->save();
-
-        //recupero el servicio que se ha seleccionado
-        $servicio = Servicio::find($request->servicio);
-
-        //añado el enunciado a dicho servicio
-        $servicio->categoria()->save($cat);
-
-        //obtenemos todos los usuarios
-        $categorias = Categoria::all();
-
-
-        Session::flash('message', 'Categoria añadido con éxito');
-        Session::forget('errors');
-        //vamos a la vista
-        return View('categoria/index')->with('categorias',$categorias);
-
+        //
     }
 
     /**

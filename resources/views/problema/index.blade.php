@@ -18,7 +18,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Categorias</h3>
+            <h3>Problemas</h3>
         </div>
 
     </div>
@@ -31,7 +31,7 @@
                 <div class="x_title">
                     @include('sessionmessages/details')
                     <ul class="nav navbar-right panel_toolbox">
-                        <a href="{{ URL::to('categoria/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Categoria</a>
+                        <a href="{{ URL::to('problema/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Problema</a>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -42,14 +42,16 @@
                         <tr>
                             <th>Servicio</th>
                             <th>Categoria</th>
+                            <th>problema</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($categorias as $categoria)
+                        @foreach($problemas as $problema)
                         <tr>
-                            <td>{{ $categoria->servicio->servicio }}</td>
-                            <td>{{ $categoria->categoria }}</td>
-                            <!--<td style="text-align:center;"><a href='{{ URL::to("categoria/$categoria->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
+                            <td>{{$problema->categoria->servicio->servicio}}</td>
+                            <td>{{ $problema->categoria->categoria }}</td>
+                            <td>{{ $problema->problema }}</td>
+                            <!--<td style="text-align:center;"><a href='{{ URL::to("problema/$problema->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
                             -->
                         </tr>
                         @endforeach

@@ -4,7 +4,7 @@
 
 <div class="page-title">
     <div class="title_left">
-        <h3>Alta Enunciado</h3>
+        <h3>Alta Problema</h3>
     </div>
 
 </div>
@@ -17,21 +17,20 @@
 
             <div class="x_content">
                 <br />
-                <form id="main" name="main" class="form-horizontal" action="{{ URL::to('enunciado')}}" method="post" novalidate>
+                <form id="main" name="main" class="form-horizontal" action="{{ URL::to('problema')}}" method="post" novalidate>
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="servicio">Seleccione servicio</label>
+                        <label class="col-sm-2 control-label" for="servicio">Seleccione Servicio</label>
                         <div class="col-sm-5">
                             <select id="servicio" class="form-control" name="servicio" >
                                 <option value=""></option>
                                 @foreach($servicios as $servicio)
                                     @if (old('servicio') == $servicio->servicio)
-                                        <option value="{{$servicio->id}}" selected>{{$servicio->servicio}}</option>
+                                    <option value="{{$servicio->id}}" selected>{{$servicio->servicio}}</option>
                                     @else
-                                        <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
+                                    <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
                                     @endif
-
                                 @endforeach
 
 
@@ -42,9 +41,20 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="enunciado">Enunciado</label>
+                        <label class="col-sm-2 control-label" for="categoria">Seleccione Categoria</label>
                         <div class="col-sm-5">
-                            <input id="enunciado" class="form-control" type="enunciado" placeholder="Intro enunciado" name="enunciado" value="{{ old('enunciado') }}">
+                            <select id="categoria" class="form-control" name="categoria" >
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5 messages"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="problema">problema</label>
+                        <div class="col-sm-5">
+                            <input id="problema" class="form-control" type="problema" placeholder="Intro problema" name="problema" value="{{ old('problema') }}">
                         </div>
                         <div class="col-sm-5 messages">
                         </div>
@@ -105,7 +115,7 @@
 
         // These are the constraints used to validate the form
         var constraints = {
-            enunciado: {
+            problema: {
                 presence: true,
                 /*format: {
                  // We don't allow anything that a-z and 0-9
@@ -113,7 +123,7 @@
                  message: "^Formato incorrecto"
                  }*/
             },
-            servicio: {
+            categoria: {
                 // You also need to input where you live
                 presence: true,
                 // And we restrict the countries supported to Sweden
@@ -234,6 +244,46 @@
         $('#errorMessage').fadeOut('fast');
     }, 15000); // <-- time in milliseconds
 </script>
+
+
+<script>
+
+    jQuery(document).ready(function($){
+        $('#servicio').change(function(){
+            //alert($(this).val());
+            $.get("{{ URL('obtenercategoriasfromservicios') }}/get?servicio_id=" + $(this).val(),
+                function(data) {
+                    //alert("yea");
+                    var model = $('#categoria');
+                    model.empty();
+
+                    $.each(data, function(index, element) {
+                        model.append("<option value='"+ element.id +"'>" + element.categoria + "</option>");
+                    });
+                });
+        });
+
+        /*
+         ver si la url se consigue con exito o error
+         $.ajax({
+         url: "{{ URL('pruebaajax') }}/create/ajax-state?pais_id=1",
+         type: 'GET',
+         success: function(data){
+         alert("exito");
+         },
+         error: function(data) {
+         alert('woops!'); //or whatever
+         }
+         });*/
+
+
+    });
+
+    /* });*/
+
+
+</script>
+
 
 
 

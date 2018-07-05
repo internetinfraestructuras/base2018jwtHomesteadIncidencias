@@ -4,7 +4,7 @@
 
 <div class="page-title">
     <div class="title_left">
-        <h3>Alta Enunciado</h3>
+        <h3>Alta Categoria</h3>
     </div>
 
 </div>
@@ -17,7 +17,7 @@
 
             <div class="x_content">
                 <br />
-                <form id="main" name="main" class="form-horizontal" action="{{ URL::to('enunciado')}}" method="post" novalidate>
+                <form id="main" name="main" class="form-horizontal" action="{{ URL::to('categoria')}}" method="post" novalidate>
 
 
                     <div class="form-group">
@@ -26,11 +26,11 @@
                             <select id="servicio" class="form-control" name="servicio" >
                                 <option value=""></option>
                                 @foreach($servicios as $servicio)
-                                    @if (old('servicio') == $servicio->servicio)
-                                        <option value="{{$servicio->id}}" selected>{{$servicio->servicio}}</option>
-                                    @else
-                                        <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
-                                    @endif
+                                @if (old('servicio') == $servicio->servicio)
+                                <option value="{{$servicio->id}}" selected>{{$servicio->servicio}}</option>
+                                @else
+                                <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
+                                @endif
 
                                 @endforeach
 
@@ -42,9 +42,9 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="enunciado">Enunciado</label>
+                        <label class="col-sm-2 control-label" for="categoria">Categoria</label>
                         <div class="col-sm-5">
-                            <input id="enunciado" class="form-control" type="enunciado" placeholder="Intro enunciado" name="enunciado" value="{{ old('enunciado') }}">
+                            <input id="categoria" class="form-control" type="categoria" placeholder="Intro categoria" name="categoria" value="{{ old('categoria') }}">
                         </div>
                         <div class="col-sm-5 messages">
                         </div>
@@ -105,7 +105,7 @@
 
         // These are the constraints used to validate the form
         var constraints = {
-            enunciado: {
+            categoria: {
                 presence: true,
                 /*format: {
                  // We don't allow anything that a-z and 0-9

@@ -18,6 +18,20 @@ Route::get('/', function () {
 });
 
 
+/* RUTAS AJAX AUTORELLENAR SELECTS*/
+
+//obtener categorias from servicio
+Route::get('obtenercategoriasfromservicios/get',function()
+{
+    $servicio_id = Input::get('servicio_id');
+    $categorias = App\Categoria::where('servicio_id','=',$servicio_id)->get(['id','categoria']);
+    return $categorias;
+});
+
+
+
+/************************/
+
 //Route::resource('login', 'LoginUserController');
 
 //ruta login
@@ -97,6 +111,26 @@ Route::group(['middleware' => 'auth'], function () {
 
     /*******************************************************/
 
+
+    /** RUTA MANEJO CLASE categorias ALTA, BAJA, MODIFICACION */
+
+    //resource categoria
+    Route::resource("categoria","CategoriaController");
+
+    /*******************************************************/
+
+    /** RUTA MANEJO CLASE problemas ALTA, BAJA, MODIFICACION */
+
+    //resource categoria
+    Route::resource("problema","ProblemaController");
+
+    /*******************************************************/
+    /** RUTA MANEJO CLASE soluciones ALTA, BAJA, MODIFICACION */
+
+    //resource categoria
+    Route::resource("solucion","SolucionController");
+
+    /*******************************************************/
 
     /*
         //ruta incidencias

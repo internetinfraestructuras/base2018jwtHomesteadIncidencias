@@ -144,6 +144,20 @@
 
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-product-hunt"></i>Problemas<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ url('problema')}}">Problemas</a></li>
+                                    <li><a href="{{ URL::to('problema/create') }}">Alta Problema</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-skype "></i>Soluciones<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ url('solucion')}}">Soluciones</a></li>
+                                    <li><a href="{{ URL::to('solucion/create') }}">Alta Solucion</a></li>
+
+                                </ul>
+                            </li>
                             @endif
 
                             @if( Auth::user()->tipocliente=='HOTEL' )

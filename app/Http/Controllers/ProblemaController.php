@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Problema;
+use App\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProblemaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $problemas = Problema::all();
+
+        return View('problema/index')->with('problemas',$problemas);
     }
 
     /**
@@ -24,7 +24,10 @@ class ProblemaController extends Controller
      */
     public function create()
     {
-        //
+        $servicios = Servicio::all();
+        $categorias = Categoria::all();
+
+        return View('problema/create')->with('servicios',$servicios)->with('categorias',$categorias);
     }
 
     /**
@@ -35,7 +38,26 @@ class ProblemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $prob = new Problema();
+        $prob->problema=$request->problema;
+        //$enunciado->save();
+
+        //recupero la categoria que se ha seleccionado
+        $cat = Categoria::where('categoria', '=', $request->categoria)->first();
+
+        //añado el enunciado a dicho servicio
+        $cat->problema()->save($prob);
+
+        //obtenemos todos los problemas
+        $problemas = Problema::all();
+
+
+        Session::flash('message', 'Problema añadido con éxito');
+        Session::forget('errors');
+        //vamos a la vista
+        return View('problema/index')->with('problemas',$problemas);
+
     }
 
     /**

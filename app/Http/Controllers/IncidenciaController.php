@@ -29,8 +29,11 @@ class IncidenciaController extends Controller
     public function create($id)
     {
         //crear una incidencia
+        //le mando los tipos de servicios de este cliente
+        $user = User::find($id);
+        $servicios = $user->servicios;
 
-        return View('incidencia/create')->with('user',User::find($id));
+        return View('incidencia/create')->with('user',$user)->with('servicios',$servicios);
 
     }
 
@@ -51,21 +54,14 @@ class IncidenciaController extends Controller
 
         $incidencia = new Incidencia();
         $incidencia->habitacion= $request->habitacion;
-        $incidencia->tipoincidencia= $request->tipoincidencia;
-        $incidencia->observaciones= $request->observaciones;
-
-        if($request->problematelefonia !="" )
-            $incidencia->problema= $request->problematelefonia;
-        else if($request->problemainternet != "")
-            $incidencia->problema= $request->problemainternet;
-        else
-            $incidencia->problema= $request->problemaiptv;
+        $incidencia->servicio_id= $request->servicio;
+        $incidencia->enunciado_id= $request->enunciado;
+        $incidencia->observacionescliente= $request->observacionescliente;
 
 
         $incidencia->user_id=Auth::user()->id;
         $incidencia->estado="OPEN";
         $incidencia->save();
-
 
 
 
@@ -84,7 +80,7 @@ class IncidenciaController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * Uso esta vista para la visualizacion y la edicion de la incidencia
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -106,10 +102,13 @@ class IncidenciaController extends Controller
      */
     public function edit($id,$idinci)
     {
-        //echo "user $id, incidencia $idinci";
         $incidencia = Incidencia::find($idinci);
+        $user = User::find($id);
 
-        return View('incidencia/edit')->with('incidencia',$incidencia);
+        $categorias = $incidencia->servicio->categoria;
+
+
+        return View('incidencia/edit')->with('incidencia',$incidencia)->with('user',$user)->with('categorias',$categorias);
     }
 
     /**

@@ -41,14 +41,19 @@
                         <thead>
                         <tr>
                             <th>Servicio</th>
+                            <th>Ver Categorias de resolucion asociadas</th>
+                            <th>Ver Enunciados asociados</th>
+                            <th>Editar</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($servicios as $servicio)
                         <tr>
                             <td>{{ $servicio->servicio }}</td>
-                            <!--<td style="text-align:center;"><a href='{{ URL::to("servicio/$servicio->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
-                            -->
+                            <td style="text-align:center;"><a href='{{ URL::to("servicio/$servicio->id/categorias") }}' class="btn btn-default"><i class="fa fa-copyright"></i></a></td>
+                            <td style="text-align:center;"><a href='{{ URL::to("servicio/$servicio->id/enunciados") }}' class="btn btn-default"><i class="fa fa-edge"></i></a></td>
+                            <td style="text-align:center;"><a href='{{ URL::to("servicio/$servicio->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
+
                         </tr>
                         @endforeach
                         </tbody>

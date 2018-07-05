@@ -28,7 +28,37 @@ Route::get('obtenercategoriasfromservicios/get',function()
     return $categorias;
 });
 
+//obtener enunciados from servicio
+Route::get('obtenerenunciadosfromservicios/get',function()
+{
+    $servicio_id = Input::get('servicio_id');
+    $enunciados = App\Enunciado::where('servicio_id','=',$servicio_id)->get(['id','enunciado']);
+    return $enunciados;
+});
 
+//obtener problemas from categorias
+Route::get('obtenerproblemasfromcategorias/get',function()
+{
+    $categoria_id = Input::get('categoria_id');
+    $problemas = App\Problema::where('categoria_id','=',$categoria_id)->get(['id','problema']);
+    return $problemas;
+});
+
+//obtener soluciones from categorias
+Route::get('obtenersolucionesfromcategorias/get',function()
+{
+    $categoria_id = Input::get('categoria_id');
+    $soluciones = App\Solucion::where('categoria_id','=',$categoria_id)->get(['id','solucion']);
+    return $soluciones;
+});
+
+//obtener facturables from categorias
+Route::get('obtenerfacturablesfromcategorias/get',function()
+{
+    $categoria_id = Input::get('categoria_id');
+    $facturables = App\Facturable::where('categoria_id','=',$categoria_id)->get(['id','facturable']);
+    return $facturables;
+});
 
 /************************/
 
@@ -100,6 +130,8 @@ Route::group(['middleware' => 'auth'], function () {
     /** RUTA MANEJO CLASE SERVICIOS ALTA, BAJA, MODIFICACION */
 
     //resource servicios
+    Route::get('servicio/{idservicio?}/categorias', [ 'uses' => 'CategoriaController@index']);
+    Route::get('servicio/{idservicio?}/enunciados', [ 'uses' => 'EnunciadoController@index']);
     Route::resource("servicio","ServicioController");
 
     /*******************************************************/
@@ -121,14 +153,22 @@ Route::group(['middleware' => 'auth'], function () {
 
     /** RUTA MANEJO CLASE problemas ALTA, BAJA, MODIFICACION */
 
-    //resource categoria
+    //resource problema
     Route::resource("problema","ProblemaController");
 
     /*******************************************************/
     /** RUTA MANEJO CLASE soluciones ALTA, BAJA, MODIFICACION */
 
-    //resource categoria
+    //resource solucion
     Route::resource("solucion","SolucionController");
+
+    /*******************************************************/
+
+
+    /** RUTA MANEJO CLASE facturable ALTA, BAJA, MODIFICACION */
+
+    //resource solucion
+    Route::resource("facturable","FacturableController");
 
     /*******************************************************/
 

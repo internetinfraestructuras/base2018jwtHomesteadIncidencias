@@ -44,7 +44,7 @@ class ProblemaController extends Controller
         //$enunciado->save();
 
         //recupero la categoria que se ha seleccionado
-        $cat = Categoria::where('categoria', '=', $request->categoria)->first();
+        $cat = Categoria::find($request->categoria);
 
         //añado el enunciado a dicho servicio
         $cat->problema()->save($prob);

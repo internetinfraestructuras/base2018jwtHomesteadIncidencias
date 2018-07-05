@@ -130,7 +130,7 @@
 
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-list-ol  "></i>Enunciados<span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-edge  "></i>Enunciados<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ url('enunciado')}}">Enunciados</a></li>
                                     <li><a href="{{ URL::to('enunciado/create') }}">Alta Enunciado</a></li>
@@ -155,6 +155,13 @@
                                 <ul class="nav child_menu">
                                     <li><a href="{{ url('solucion')}}">Soluciones</a></li>
                                     <li><a href="{{ URL::to('solucion/create') }}">Alta Solucion</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-facebook "></i>Facturable<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ url('facturable')}}">Facturables</a></li>
+                                    <li><a href="{{ URL::to('facturable/create') }}">Alta Facturable</a></li>
 
                                 </ul>
                             </li>

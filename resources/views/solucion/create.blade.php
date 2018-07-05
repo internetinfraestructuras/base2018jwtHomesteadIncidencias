@@ -4,7 +4,7 @@
 
 <div class="page-title">
     <div class="title_left">
-        <h3>Abrir Ticket</h3>
+        <h3>Alta solucion</h3>
     </div>
 
 </div>
@@ -17,30 +17,20 @@
 
             <div class="x_content">
                 <br />
-                <form id="main" name="main" class="form-horizontal" action="{{ URL::to('incidencia')}}" method="post" novalidate>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="habitacion">Habitación/Zona</label>
-                        <div class="col-sm-5">
-                            <input id="habitacion" class="form-control" type="text" placeholder="Habitacion/Zona" name="habitacion" value="{{ old('habitacion') }}">
-                        </div>
-                        <div class="col-sm-5 messages">
-                        </div>
-                    </div>
-
+                <form id="main" name="main" class="form-horizontal" action="{{ URL::to('solucion')}}" method="post" novalidate>
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="servicio">Seleccione servicio</label>
+                        <label class="col-sm-2 control-label" for="servicio">Seleccione Servicio</label>
                         <div class="col-sm-5">
                             <select id="servicio" class="form-control" name="servicio" >
                                 <option value=""></option>
                                 @foreach($servicios as $servicio)
-                                @if (old('servicio') == $servicio->servicio)
-                                <option value="{{$servicio->id}}" selected>{{$servicio->servicio}}</option>
-                                @else
-                                <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
-                                @endif
-
+                                    @if (old('servicio') == $servicio->servicio)
+                                    <option value="{{$servicio->id}}" selected>{{$servicio->servicio}}</option>
+                                    @else
+                                    <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
+                                    @endif
                                 @endforeach
 
 
@@ -51,9 +41,9 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="enunciado">Seleccione Problema</label>
+                        <label class="col-sm-2 control-label" for="categoria">Seleccione Categoria</label>
                         <div class="col-sm-5">
-                            <select id="enunciado" class="form-control" name="enunciado" >
+                            <select id="categoria" class="form-control" name="categoria" >
                                 <option value=""></option>
                             </select>
                         </div>
@@ -62,18 +52,19 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" id="textarealabel" for="observacionescliente">Notas adicionales</label>
+                        <label class="col-sm-2 control-label" for="solucion">solucion</label>
                         <div class="col-sm-5">
-                            <textarea id="observacionescliente" class="form-control" type="text" placeholder="Observaciones" name="observacionescliente"></textarea>
+                            <input id="solucion" class="form-control" type="solucion" placeholder="Intro solucion" name="solucion" value="{{ old('solucion') }}">
                         </div>
-                        <div class="col-sm-5 messages" id="textareaerrores">
+                        <div class="col-sm-5 messages">
                         </div>
                     </div>
 
+                    <br>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Abrir Ticket</button>
+                        <div class="col-sm-offset-6 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Alta</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -124,24 +115,23 @@
 
         // These are the constraints used to validate the form
         var constraints = {
-
-            servicio: {
-                // You also need to input where you live
-                presence: true,
-                // And we restrict the countries supported to Sweden
-            },
-            enunciado: {
-                // You also need to input where you live
-                presence: true,
-                // And we restrict the countries supported to Sweden
-            },
-            habitacion: {
+            solucion: {
                 presence: true,
                 /*format: {
                  // We don't allow anything that a-z and 0-9
                  pattern:  /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/,
                  message: "^Formato incorrecto"
                  }*/
+            },
+            categoria: {
+                // You also need to input where you live
+                presence: true,
+                // And we restrict the countries supported to Sweden
+            },
+            servicio: {
+                // You also need to input where you live
+                presence: true,
+                // And we restrict the countries supported to Sweden
             }
 
         };
@@ -261,50 +251,20 @@
     }, 15000); // <-- time in milliseconds
 </script>
 
-<script>
-
-    //pulsado en tipo de incidencia
-    function mostrarOcultarTipos(elem){
-        if(elem.value == 'Telefonia') {
-            document.getElementById('problematelefonia').style.display = "block";
-            document.getElementById('problemainternet').style.display = "none";
-            document.getElementById('problemaiptv').style.display = "none";
-
-            //document.getElementById('tipoincidenciapass').value="Telefonia";
-        }
-        if(elem.value == 'Internet') {
-            document.getElementById('problematelefonia').style.display = "none";
-            document.getElementById('problemainternet').style.display = "block";
-            document.getElementById('problemaiptv').style.display = "none";
-
-            //document.getElementById('tipoincidenciapass').value="Internet";
-        }
-        if(elem.value == 'Television') {
-            document.getElementById('problematelefonia').style.display = "none";
-            document.getElementById('problemainternet').style.display = "none";
-            document.getElementById('problemaiptv').style.display = "block";
-
-            //document.getElementById('tipoincidenciapass').value="IPTV";
-        }
-    }
-
-
-</script>
-
 
 <script>
 
     jQuery(document).ready(function($){
         $('#servicio').change(function(){
             //alert($(this).val());
-            $.get("{{ URL('obtenerenunciadosfromservicios') }}/get?servicio_id=" + $(this).val(),
+            $.get("{{ URL('obtenercategoriasfromservicios') }}/get?servicio_id=" + $(this).val(),
                 function(data) {
                     //alert("yea");
-                    var model = $('#enunciado');
+                    var model = $('#categoria');
                     model.empty();
 
                     $.each(data, function(index, element) {
-                        model.append("<option value='"+ element.id +"'>" + element.enunciado + "</option>");
+                        model.append("<option value='"+ element.id +"'>" + element.categoria + "</option>");
                     });
                 });
         });
@@ -329,6 +289,7 @@
 
 
 </script>
+
 
 
 

@@ -18,7 +18,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Tickets</h3>
+            <h3>Soluciones</h3>
         </div>
 
     </div>
@@ -31,73 +31,28 @@
                 <div class="x_title">
                     @include('sessionmessages/details')
                     <ul class="nav navbar-right panel_toolbox">
-                        <a href='{{ URL::to("/user/$user->id/incidencia/create") }}' class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Abrir Ticket</a>
+                        <a href="{{ URL::to('solucion/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Solucion</a>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="x_content">
-                    <table id="datatable2" class="table table-striped table-bordered" style="text-align: center;vertical-align: middle;">
+                    <table id="datatable2" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Hotel</th>
-                            <th>Habitacion/Zona</th>
-                            <th>Tipo</th>
-                            <th>Problema</th>
-                            <th>Estado</th>
-                            <th>Creada</th>
-                            <th>Cerrada</th>
-
-                            <?php
-                            if($user->tipocliente=='ADMIN' || $user->tipocliente=='TECNICO'){
-                            ?>
-                                <th>Ver/Resolver</th>
-                            <?php
-                            }
-                            else
-                            {
-                            ?>
-                                <th>Ver/</th>
-                            <?php
-                            }
-                            ?>
-
+                            <th>Servicio</th>
+                            <th>Categoria</th>
+                            <th>Solucion</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($incidencias as $incidencia)
+                        @foreach($soluciones as $solucion)
                         <tr>
-                            <td>{{ $incidencia->id }}</td>
-                            <td>{{ $incidencia->user->name }}</td>
-                            <td>{{ $incidencia->habitacion }}</td>
-                            <td>{{ $incidencia->servicio->servicio }}</td>
-                            <td>{{ $incidencia->enunciado->enunciado }}</td>
-                            <?php
-                                    if ($incidencia->estado=="OPEN")
-                                        echo '<td  style="background-color:#00A000;color: white">'.$incidencia->estado.'</td>';
-                                    else if ($incidencia->estado=="CLOSED")
-                                        echo '<td>'.$incidencia->estado.'</td>';
-                            ?>
-
-                            <td>{{ $incidencia->created_at }}</td>
-                            <td>{{ $incidencia->solution_at }}</td>
-                            <?php
-                                     if($user->tipocliente=='ADMIN' || $user->tipocliente=='TECNICO'){
-                            ?>
-                            <td style="text-align:center;"><a href='{{ URL::to("/user/$user->id/incidencia/$incidencia->id/edit") }}' class="btn btn-default"><i class="fa fa-search"></i><i class="fa fa-check"></i></i></a></td>
-
-
-                            <?php
-                            }
-                            else
-                            {
-                            ?>
-                            <td style="text-align:center;"><a href='{{ URL::to("/user/$user->id/incidencia/$incidencia->id/show") }}' class="btn btn-default"><i class="fa fa-search"></i></a></td>
-
-                            <?php
-                            }
-                            ?>
+                            <td>{{$solucion->categoria->servicio->servicio}}</td>
+                            <td>{{ $solucion->categoria->categoria }}</td>
+                            <td>{{ $solucion->solucion }}</td>
+                            <!--<td style="text-align:center;"><a href='{{ URL::to("solucion/$solucion->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
+                            -->
                         </tr>
                         @endforeach
                         </tbody>

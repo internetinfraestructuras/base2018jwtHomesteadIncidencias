@@ -103,7 +103,7 @@ class UserController extends Controller
 
         if($user->tipocliente=='ADMIN')
         {
-            $incidencias=Incidencia::where('estado','CLOSED')->get();
+            $incidencias=Incidencia::where('estado','CERRADO')->get();
         }
         else
             $incidencias=$user->incidencias;

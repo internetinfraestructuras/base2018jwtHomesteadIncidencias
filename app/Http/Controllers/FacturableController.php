@@ -3,23 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Facturable;
 use App\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class CategoriaController extends Controller
+class FacturableController extends Controller
 {
-    public function index($idservicio= null)
+    public function index()
     {
+        $facturables = Facturable::all();
 
-        //si viene un id de servicio => filtro
-        if($idservicio!=null) {
-            $categorias = Servicio::find($idservicio)->categoria;
-        }
-        else
-            $categorias = Categoria::all();
-
-        return View('categoria/index')->with('categorias',$categorias);
+        return View('facturable/index')->with('facturables',$facturables);
     }
 
     /**
@@ -30,8 +25,9 @@ class CategoriaController extends Controller
     public function create()
     {
         $servicios = Servicio::all();
+        $categorias = Categoria::all();
 
-        return View('categoria/create')->with('servicios',$servicios);
+        return View('facturable/create')->with('servicios',$servicios)->with('categorias',$categorias);
     }
 
     /**
@@ -42,26 +38,25 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //echo "viene enunciado $request->enunciado --- vinculado a servicio $request->servicio";
 
-        $cat = new Categoria();
-        $cat->categoria=$request->categoria;
+        $prob = new Facturable();
+        $prob->facturable=$request->facturable;
         //$enunciado->save();
 
-        //recupero el servicio que se ha seleccionado
-        $servicio = Servicio::find($request->servicio);
+        //recupero la categoria que se ha seleccionado
+        $cat = Categoria::find($request->categoria);
 
         //añado el enunciado a dicho servicio
-        $servicio->categoria()->save($cat);
+        $cat->facturable()->save($prob);
 
-        //obtenemos todos los usuarios
-        $categorias = Categoria::all();
+        //obtenemos todos los facturables
+        $facturables = Facturable::all();
 
 
-        Session::flash('message', 'Categoria añadido con éxito');
+        Session::flash('message', 'Facturable añadido con éxito');
         Session::forget('errors');
         //vamos a la vista
-        return View('categoria/index')->with('categorias',$categorias);
+        return View('facturable/index')->with('facturables',$facturables);
 
     }
 

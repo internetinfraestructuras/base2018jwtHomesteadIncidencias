@@ -56,21 +56,21 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="tipoincidencia">Tipo Incidencia</label>
+                        <label class="col-sm-2 control-label" for="servicio">Tipo Incidencia</label>
                         <div class="col-sm-5">
-                            <input id="tipoincidencia" class="form-control" type="text" readonly="true" name="tipoincidencia" value="{{ $incidencia->tipoincidencia }}">
+                            <input id="servicio" class="form-control" type="text" readonly="true" name="servicio" value="{{ $incidencia->servicio->servicio }}">
                         </div>
                         <div class="col-sm-5 messages">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="tipoincidencia">Problema</label>
+                        <label class="col-sm-2 control-label" for="enunciado">Problema comentado</label>
                         <div class="col-sm-5">
                             <?php if($user->tipocliente=='ADMIN'){ ?>
-                                <input id="problema" class="form-control" type="text"  name="problema" value="{{ $incidencia->problema }}">
+                                <input id="enunciado" class="form-control" type="text"  name="enunciado" value="{{ $incidencia->enunciado->enunciado }}">
                             <?php }else{ ?>
-                                <input id="problema" class="form-control" type="text" readonly="true" name="problema" value="{{ $incidencia->problema }}">
+                                <input id="enunciado" class="form-control" type="text" readonly="true" name="enunciado" value="{{ $incidencia->enunciado->enunciado }}">
                             <?php } ?>
                         </div>
                         <div class="col-sm-5 messages">

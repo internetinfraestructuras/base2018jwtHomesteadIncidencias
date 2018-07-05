@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Session;
 
 class EnunciadoController extends Controller
 {
-    public function index()
+    public function index($idservicio= null)
     {
-        $enunciados = Enunciado::all();
+
+        //si viene un id de servicio => filtro
+        if($idservicio!=null) {
+            $enunciados = Servicio::find($idservicio)->enunciado;
+        }
+        else
+            $enunciados = Enunciado::all();
 
         return View('enunciado/index')->with('enunciados',$enunciados);
     }

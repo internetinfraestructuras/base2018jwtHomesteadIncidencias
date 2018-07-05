@@ -127,6 +127,11 @@
                 // You also need to input where you live
                 presence: true,
                 // And we restrict the countries supported to Sweden
+            },
+            servicio: {
+                // You also need to input where you live
+                presence: true,
+                // And we restrict the countries supported to Sweden
             }
         };
 

@@ -18,7 +18,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Usuarios</h3>
+            <h3>Servicios</h3>
         </div>
 
     </div>
@@ -31,7 +31,7 @@
                 <div class="x_title">
                     @include('sessionmessages/details')
                     <ul class="nav navbar-right panel_toolbox">
-                        <a href="{{ URL::to('user/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Usuario</a>
+                        <a href="{{ URL::to('servicio/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Servicio</a>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -40,23 +40,15 @@
                     <table id="datatable2" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Usuario Acceso</th>
-                            <th>Email</th>
-                            <th>Tipo</th>
-                            <th>Editar</th>
-                            <th>Servicios Autorizados</th>
+                            <th>Servicio</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($servicios as $servicio)
                         <tr>
-                            <td>{{ $user->nombre_completo }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->tipocliente }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td style="text-align:center;"><a href='{{ URL::to("user/$user->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
-                            <td style="text-align:center;"><a href='{{ URL::to("user/$user->id/servicios") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
+                            <td>{{ $servicio->servicio }}</td>
+                            <!--<td style="text-align:center;"><a href='{{ URL::to("servicio/$servicio->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
+                            -->
                         </tr>
                         @endforeach
                         </tbody>

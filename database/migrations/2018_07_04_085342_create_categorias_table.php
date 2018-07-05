@@ -17,6 +17,8 @@ class CreateCategoriasTable extends Migration
             $table->increments('id');
             $table->integer('servicio_id');
             $table->string('categoria');
+
+            //$table->foreign('servicio_id')->references('id')->on('servicios');
         });
     }
 

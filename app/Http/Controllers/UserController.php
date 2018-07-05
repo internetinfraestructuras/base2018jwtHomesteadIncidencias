@@ -12,10 +12,70 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Input;
 use DB;
 use App\Canal;
+use App\Servicio;
 
 
 class UserController extends Controller
 {
+
+
+    /**
+     * Devuelve la vista con las incidencias
+     * @param $id
+     */
+    public function servicios($id){
+
+        $user=User::find($id);
+
+        $servicios=$user->servicios;
+
+        //obtengo una coleccion de objetos que son los servicios existentes en plataforma y que no tiene este usuario
+        $result=DB::select('select * from servicios where id not in( select servicio_id from user_servicio where user_id=?)',[$id]);
+        $serviciosNoSeleccionados = Servicio::hydrate($result);
+
+       // dd($serviciosNoSeleccionados);
+
+
+        return View('user/user_servicios')->with('servicios',$servicios)->with('serviciosNoSeleccionados',$serviciosNoSeleccionados)->with('user',$user);
+
+    }
+
+
+    /**
+     * setear servicios de un usuario
+     * @param $id
+     */
+    public function serviciosset(Request $request,$id){
+
+        $user=User::find($id);
+
+        //borro todos los canales de ese user
+        $user->servicios()->detach();
+
+        //ahora le asocio los servicios que vienen:
+        $parametros = $request->All();
+        foreach($parametros as $param => $valor)
+        {
+            //echo "parametro: $param ,valor $valor";
+            //si es un numero => es de los canales seleccionados
+            if($valor=='on')
+            {
+                //lo meto en la relacion
+                $servicio = Servicio::where('servicio',$param)->first();
+               // dd($servicio);
+                $user->servicios()->save($servicio);
+            }
+
+        }
+
+        Session::flash('message', 'Servicios actualizados con éxito');
+        Session::forget('errors');
+        //vamos a la vista
+        $users= User::all();
+        return View('user/index')->with('users', $users);
+
+    }
+
 
     /**
      * Devuelve la vista con las incidencias

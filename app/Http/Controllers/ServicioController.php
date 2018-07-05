@@ -14,7 +14,9 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        //
+        $servicios = Servicio::all();
+
+        return View('servicio/index')->with('servicios',$servicios);
     }
 
     /**
@@ -24,7 +26,7 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        //
+        return View('servicio/create');
     }
 
     /**

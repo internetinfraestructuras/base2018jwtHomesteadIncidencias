@@ -123,6 +123,13 @@
 
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-ellipsis-v "></i>Servicios<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ url('servicio')}}">Servicios</a></li>
+                                    <li><a href="{{ URL::to('servicio/create') }}">Alta Servicio</a></li>
+
+                                </ul>
+                            </li>
                             @endif
 
                             @if( Auth::user()->tipocliente=='HOTEL' )

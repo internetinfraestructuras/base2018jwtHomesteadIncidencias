@@ -18,7 +18,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Enunciados</h3>
+            <h3>Categorias</h3>
         </div>
 
     </div>
@@ -31,7 +31,7 @@
                 <div class="x_title">
                     @include('sessionmessages/details')
                     <ul class="nav navbar-right panel_toolbox">
-                        <a href="{{ URL::to('enunciado/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Enunciado</a>
+                        <a href="{{ URL::to('categoria/create') }}" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i>Añadir Categoria</a>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -41,14 +41,14 @@
                         <thead>
                         <tr>
                             <th>Servicio</th>
-                            <th>Enunciado</th>
+                            <th>Categoria</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($enunciados as $enunciado)
+                        @foreach($categorias as $categoria)
                         <tr>
-                            <td>{{ $enunciado->servicio->servicio }}</td>
-                            <td>{{ $enunciado->enunciado }}</td>
+                            <td>{{ $categoria->servicio->servicio }}</td>
+                            <td>{{ $categoria->categoria }}</td>
                             <!--<td style="text-align:center;"><a href='{{ URL::to("enunciado/$enunciado->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
                             -->
                         </tr>

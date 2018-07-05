@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Enunciado;
+use App\Categoria;
 use App\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class EnunciadoController extends Controller
+class CategoriaController extends Controller
 {
     public function index()
     {
-        $enunciados = Enunciado::all();
+        $categorias = Categoria::all();
 
-        return View('enunciado/index')->with('enunciados',$enunciados);
+        return View('categoria/index')->with('categorias',$categorias);
     }
 
     /**
@@ -25,7 +25,7 @@ class EnunciadoController extends Controller
     {
         $servicios = Servicio::all();
 
-        return View('enunciado/create')->with('servicios',$servicios);
+        return View('categoria/create')->with('servicios',$servicios);
     }
 
     /**
@@ -38,24 +38,24 @@ class EnunciadoController extends Controller
     {
         //echo "viene enunciado $request->enunciado --- vinculado a servicio $request->servicio";
 
-        $enunciado = new Enunciado();
-        $enunciado->enunciado=$request->enunciado;
+        $cat = new Categoria();
+        $cat->categoria=$request->categoria;
         //$enunciado->save();
 
         //recupero el servicio que se ha seleccionado
         $servicio = Servicio::where('servicio', '=', $request->servicio)->first();
 
         //añado el enunciado a dicho servicio
-        $servicio->enunciado()->save($enunciado);
+        $servicio->categoria()->save($cat);
 
         //obtenemos todos los usuarios
-        $enunciados = Enunciado::all();
+        $categorias = Categoria::all();
 
 
-        Session::flash('message', 'Enunciado añadido con éxito');
+        Session::flash('message', 'Categoria añadido con éxito');
         Session::forget('errors');
         //vamos a la vista
-        return View('enunciado/index')->with('enunciados',$enunciados);
+        return View('categoria/index')->with('categorias',$categorias);
 
     }
 

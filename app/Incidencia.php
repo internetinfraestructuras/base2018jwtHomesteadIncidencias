@@ -36,7 +36,7 @@ class Incidencia extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user(){
-        return $this->belongsTo('App\User','id','user_id');
+        return $this->belongsTo('App\User','id');
     }
 
 }

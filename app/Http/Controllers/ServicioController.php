@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ServicioController extends Controller
 {
@@ -37,7 +38,17 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $servicio = Servicio::create($request->all());
+
+        //obtenemos todos los usuarios
+        $servicios = Servicio::all();
+
+
+            Session::flash('message', 'Servicio añadido con éxito');
+            Session::forget('errors');
+            //vamos a la vista
+            return View('servicio/index')->with('servicios', $servicios);
+
     }
 
     /**

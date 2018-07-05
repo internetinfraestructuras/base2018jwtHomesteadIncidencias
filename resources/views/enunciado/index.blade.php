@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                     <br>
+                    <br>
 
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-10">

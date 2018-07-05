@@ -130,6 +130,13 @@
 
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-list-ol  "></i>Enunciados<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ url('enunciado')}}">Enunciados</a></li>
+                                    <li><a href="{{ URL::to('enunciado/create') }}">Alta Enunciado</a></li>
+
+                                </ul>
+                            </li>
                             @endif
 
                             @if( Auth::user()->tipocliente=='HOTEL' )

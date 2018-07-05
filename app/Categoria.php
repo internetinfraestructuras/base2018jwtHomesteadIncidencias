@@ -18,7 +18,7 @@ class Categoria extends Model
      */
     public function servicio(){
 
-        return $this->hasOne('App\Servicio');
+        return $this->belongsTo('App\Servicio');
     }
 
     /**

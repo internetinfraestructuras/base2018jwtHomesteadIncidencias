@@ -90,6 +90,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     /*******************************************************/
 
+    /** RUTA MANEJO CLASE enunciados ALTA, BAJA, MODIFICACION */
+
+    //resource enunciado
+    Route::resource("enunciado","EnunciadoController");
+
+    /*******************************************************/
+
+
     /*
         //ruta incidencias
         Route::resource("incidencia","IncidenciaController");

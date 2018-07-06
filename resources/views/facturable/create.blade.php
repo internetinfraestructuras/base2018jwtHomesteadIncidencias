@@ -50,6 +50,16 @@
                         <div class="col-sm-5 messages"></div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="facexists">Facturables ya existentes</label>
+                        <div class="col-sm-5">
+                            <select id="facexists" class="form-control" name="facexists" >
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5 messages"></div>
+                    </div>
+
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="facturable">Facturable</label>
@@ -269,24 +279,28 @@
                 });
         });
 
-        /*
-         ver si la url se consigue con exito o error
-         $.ajax({
-         url: "{{ URL('pruebaajax') }}/create/ajax-state?pais_id=1",
-         type: 'GET',
-         success: function(data){
-         alert("exito");
-         },
-         error: function(data) {
-         alert('woops!'); //or whatever
-         }
-         });*/
 
 
     });
 
-    /* });*/
 
+    jQuery(document).ready(function($){
+        $('#categoria').change(function(){
+            //alert($(this).val());
+            $.get("{{ URL('obtenerfacturablesfromcategorias') }}/get?categoria_id=" + $(this).val(),
+                function(data) {
+                    //alert("yea");
+                    var model = $('#facexists');
+                    model.empty();
+
+                    $.each(data, function(index, element) {
+                        model.append("<option value='"+ element.id +"'>" + element.facturable + "</option>");
+                    });
+                });
+        });
+
+
+    });
 
 </script>
 

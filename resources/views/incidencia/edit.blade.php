@@ -24,20 +24,16 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="estado">Estado</label>
                         <div class="col-sm-5">
-                            <?php
-                                if($incidencia->estado=="OPEN"){
-                            ?>
+
+                            @if($incidencia->estado=="ABIERTO")
                             <input id="estado" class="form-control" type="text" readonly="true" placeholder="Habitacion/Zona" name="estado" value="{{ $incidencia->estado }}"
                                    style="background-color:#00A000;color: white">
-                            <?php
-                                }
-                                else if($incidencia->estado=="CLOSED")
-                            {
-                            ?>
+                            @elseif($incidencia->estado=="CERRADO")
                             <input id="estado" class="form-control" type="text" readonly="true" placeholder="Habitacion/Zona" name="estado" value="{{ $incidencia->estado }}">
-                            <?php
-                            }
-                            ?>
+                            @elseif($incidencia->estado=="POSPUESTO")
+                            <input id="estado" class="form-control" type="text" readonly="true" placeholder="Habitacion/Zona" name="estado" value="{{ $incidencia->estado }}"
+                                   style="background-color:#e9cf28;color: black">
+                            @endif
 
 
                         </div>
@@ -100,7 +96,7 @@
                             <select id="categoria" class="form-control" name="categoria" >
                                 <option value=""></option>
                                 @foreach($categorias as $categoria)
-                                    @if (old('categoria') == $categoria->categoria)
+                                    @if ($incidencia->categoria_id == $categoria->id)
                                     <option value="{{$categoria->id}}" selected>{{$categoria->categoria}}</option>
                                     @else
                                     <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
@@ -118,7 +114,11 @@
                         <label class="col-sm-2 control-label" for="problema">Seleccione Problema Real</label>
                         <div class="col-sm-5">
                             <select id="problema" class="form-control" name="problema" >
-                                <option value=""></option>
+                                @if($incidencia->problema_id != NULL)
+                                    <option value="{{$incidencia->problema_id}}" selected>{{$incidencia->problema->problema}}</option>
+                                @else
+                                    <option value=""></option>
+                                @endif
                             </select>
                         </div>
                         <div class="col-sm-5 messages"></div>
@@ -128,7 +128,11 @@
                         <label class="col-sm-2 control-label" for="solucion">Seleccione Solucion</label>
                         <div class="col-sm-5">
                             <select id="solucion" class="form-control" name="solucion" >
+                                @if($incidencia->solucion_id != NULL)
+                                <option value="{{$incidencia->solucion_id}}" selected>{{$incidencia->solucion->solucion}}</option>
+                                @else
                                 <option value=""></option>
+                                @endif
                             </select>
                         </div>
                         <div class="col-sm-5 messages"></div>
@@ -138,7 +142,11 @@
                         <label class="col-sm-2 control-label" for="facturable">Seleccione Facturable</label>
                         <div class="col-sm-5">
                             <select id="facturable" class="form-control" name="facturable" >
+                                @if($incidencia->facturable_id != NULL)
+                                <option value="{{$incidencia->facturable_id}}" selected>{{$incidencia->facturable->facturable}}</option>
+                                @else
                                 <option value=""></option>
+                                @endif
                             </select>
                         </div>
                         <div class="col-sm-5 messages"></div>
@@ -147,7 +155,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" id="textarealabel" for="observacionestecnico">Notas adicionales</label>
                         <div class="col-sm-5">
-                            <textarea id="observacionestecnico" class="form-control" type="text"  placeholder="Observaciones" name="observacionestecnico">{{$incidencia->observaciones}}</textarea>
+                            <textarea id="observacionestecnico" class="form-control" type="text"  placeholder="Observaciones" name="observacionestecnico">{{$incidencia->observacionestecnico}}</textarea>
 
                         </div>
                         <div class="col-sm-5 messages" id="textareaerrores">
@@ -168,11 +176,13 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="pospuesta">Posponer</label>
+                        <label class="col-sm-2 control-label" for="checkposponer">Posponer</label>
 
                         <div class="checkbox">
                             <label class="">
-                                <div class="icheckbox_flat-green"><input id="checkposponer" name="checkposponer" class="flat"  style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>&nbsp;<span >Posponer cierre</span>
+                                <div class="icheckbox_flat-green">
+                                    <input id="checkposponer" name="checkposponer" class="flat"  style="position: absolute; opacity: 0;" type="checkbox"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                </div>&nbsp;<span >Posponer cierre</span>
                             </label>
                         </div>
 

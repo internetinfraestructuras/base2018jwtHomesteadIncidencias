@@ -42,6 +42,15 @@
 
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label" for="enunexits">Enunciados ya existentes</label>
+                        <div class="col-sm-5">
+                            <select id="enunexits" class="form-control" name="enunexits" >
+                            </select>
+                        </div>
+                        <div class="col-sm-5 messages"></div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="enunciado">Enunciado</label>
                         <div class="col-sm-5">
                             <input id="enunciado" class="form-control" type="enunciado" placeholder="Intro enunciado" name="enunciado" value="{{ old('enunciado') }}">
@@ -235,6 +244,28 @@
     }, 15000); // <-- time in milliseconds
 </script>
 
+<script>
 
+    jQuery(document).ready(function($){
+        $('#servicio').change(function(){
+            //alert($(this).val());
+            $.get("{{ URL('obtenerenunciadosfromservicios') }}/get?servicio_id=" + $(this).val(),
+                function(data) {
+                    //alert("yea");
+                    var model = $('#enunexits');
+                    model.empty();
+
+                    $.each(data, function(index, element) {
+                        model.append("<option value='"+ element.id +"'>" + element.enunciado + "</option>");
+                    });
+                });
+        });
+
+
+
+    });
+
+
+</script>
 
 @endsection

@@ -10,12 +10,26 @@ use Illuminate\Support\Facades\Session;
 
 class ProblemaController extends Controller
 {
-    public function index()
+   /* public function index()
     {
         $problemas = Problema::all();
 
         return View('problema/index')->with('problemas',$problemas);
+    }*/
+
+    public function index($idcategoria= null)
+    {
+
+        //si viene un id de categoria => filtro
+        if($idcategoria!=null) {
+            $problemas = Categoria::find($idcategoria)->problema;
+        }
+        else
+            $problemas = Problema::all();
+
+        return View('problema/index')->with('problemas',$problemas);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -100,8 +114,18 @@ class ProblemaController extends Controller
      * @param  \App\Problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Problema $problema)
+    public function destroy($id)
     {
-        //
+        $problema = Problema::find($id);
+        $problema->delete();
+
+        //obtenemos todos los problemas
+        $problemas = Problema::all();
+
+
+        Session::flash('message', 'Problema añadido con éxito');
+        Session::forget('errors');
+        //vamos a la vista
+        return View('problema/index')->with('problemas',$problemas);
     }
 }

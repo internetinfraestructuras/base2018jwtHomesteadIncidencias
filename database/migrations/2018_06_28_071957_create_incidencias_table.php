@@ -34,6 +34,7 @@ class CreateIncidenciasTable extends Migration
             $table->timestamps();
             $table->dateTime('pospuesto_at')->nullable();
             $table->dateTime('solution_at')->nullable();
+            $table->integer('user_resuelto_id')->nullable();
         });
     }
 

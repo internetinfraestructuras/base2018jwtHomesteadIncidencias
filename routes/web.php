@@ -147,6 +147,9 @@ Route::group(['middleware' => 'auth'], function () {
     /** RUTA MANEJO CLASE categorias ALTA, BAJA, MODIFICACION */
 
     //resource categoria
+    Route::get('categoria/{idcategoria?}/problemas', [ 'uses' => 'ProblemaController@index']);
+    Route::get('categoria/{idcategoria?}/soluciones', [ 'uses' => 'SolucionController@index']);
+    Route::get('categoria/{idcategoria?}/facturables', [ 'uses' => 'FacturableController@index']);
     Route::resource("categoria","CategoriaController");
 
     /*******************************************************/

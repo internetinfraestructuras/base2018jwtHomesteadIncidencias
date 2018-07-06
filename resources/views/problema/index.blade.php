@@ -42,7 +42,8 @@
                         <tr>
                             <th>Servicio</th>
                             <th>Categoria</th>
-                            <th>problema</th>
+                            <th>Problema</th>
+                            <th>Eliminar Problema</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,8 +52,13 @@
                             <td>{{$problema->categoria->servicio->servicio}}</td>
                             <td>{{ $problema->categoria->categoria }}</td>
                             <td>{{ $problema->problema }}</td>
-                            <!--<td style="text-align:center;"><a href='{{ URL::to("problema/$problema->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
-                            -->
+                            <td style="text-align:center;">
+                                <form id="{{$problema->id}}" name="{{$problema->id}}" action="{{ URL::to('problema/'.$problema->id)}}" method="post" novalidate>
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                    <input type="submit" value='Eliminar'>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>

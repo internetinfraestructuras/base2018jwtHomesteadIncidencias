@@ -107,6 +107,17 @@ class EnunciadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $e = Enunciado::find($id);
+        $e->delete();
+
+        //obtenemos todos los usuarios
+        $enunciados = Enunciado::all();
+
+
+        Session::flash('message', 'Enunciado añadido con éxito');
+        Session::forget('errors');
+        //vamos a la vista
+        return View('enunciado/index')->with('enunciados',$enunciados);
+
     }
 }

@@ -28,10 +28,6 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'telefonia@nexwrf.es',
             'tipocliente' => 'ADMIN',
-            'nombre_completo' => 'admin admin',
-            'cif' => 'b11',
-            'direccion' => 'dir',
-            'poblacion' => 'pob',
             'password' => bcrypt('telereq1430'),
         ]);
 
@@ -39,11 +35,14 @@ class UsersTableSeeder extends Seeder
             'name' => 'maioris',
             'email' => 'maiiors@asdf.com',
             'tipocliente' => 'HOTEL',
-            'nombre_completo' => 'MAIORIS',
-            'cif' => 'bsdafe',
-            'direccion' => 'dir',
-            'poblacion' => 'pob',
             'password' => bcrypt('maioris1430'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'miguel',
+            'email' => 'miggg@asdf.com',
+            'tipocliente' => 'TECNICO',
+            'password' => bcrypt('123456'),
         ]);
 
             //relleno algunos servicios, enunciados,categorias,problemas y facturables desde aqui al maioris
@@ -63,6 +62,10 @@ class UsersTableSeeder extends Seeder
             $servicio->enunciado()->save($enunciado);
             $enunciado = new \App\Enunciado();
             $enunciado->enunciado='Mando a distancia no responde';
+            $servicio->enunciado()->save($enunciado);
+
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Otro, detallado en observaciones';
             $servicio->enunciado()->save($enunciado);
 
             $user->servicios()->save($servicio);
@@ -281,6 +284,22 @@ class UsersTableSeeder extends Seeder
             $enunciado->enunciado='No funciona servicio despertador';
             $servicio->enunciado()->save($enunciado);
 
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Sin llamadas entrantes en el hotel';
+            $servicio->enunciado()->save($enunciado);
+
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Sin llamadas salientes en el hotel';
+            $servicio->enunciado()->save($enunciado);
+
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Linea ascensor';
+            $servicio->enunciado()->save($enunciado);
+
+         $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Otro, detallado en observaciones';
+            $servicio->enunciado()->save($enunciado);
+
             $user->servicios()->save($servicio);
 
             //añado algunas categorias a este tipo de servicio
@@ -405,7 +424,15 @@ class UsersTableSeeder extends Seeder
             $enunciado->enunciado='Sin Wifi en el Hotel';
             $servicio->enunciado()->save($enunciado);
             $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Sin conexión a internet en el hotel';
+            $servicio->enunciado()->save($enunciado);
+
+            $enunciado = new \App\Enunciado();
             $enunciado->enunciado='Sin conexión a internet en un equipo';
+            $servicio->enunciado()->save($enunciado);
+
+            $enunciado = new \App\Enunciado();
+            $enunciado->enunciado='Otro, detallado en observaciones';
             $servicio->enunciado()->save($enunciado);
 
             $user->servicios()->save($servicio);

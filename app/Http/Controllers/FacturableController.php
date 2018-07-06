@@ -10,9 +10,23 @@ use Illuminate\Support\Facades\Session;
 
 class FacturableController extends Controller
 {
-    public function index()
+    /*public function index()
     {
         $facturables = Facturable::all();
+
+        return View('facturable/index')->with('facturables',$facturables);
+    }*/
+
+
+    public function index($idcategoria= null)
+    {
+
+        //si viene un id de categoria => filtro
+        if($idcategoria!=null) {
+            $facturables = Categoria::find($idcategoria)->facturable;
+        }
+        else
+            $facturables = Facturable::all();
 
         return View('facturable/index')->with('facturables',$facturables);
     }
@@ -102,6 +116,17 @@ class FacturableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $facturable = Facturable::find($id);
+        $facturable->delete();
+
+        //obtenemos todos los facturables
+        $facturables = Facturable::all();
+
+
+        Session::flash('message', 'Facturable eliminado con éxito');
+        Session::forget('errors');
+        //vamos a la vista
+        return View('facturable/index')->with('facturables',$facturables);
+
     }
 }

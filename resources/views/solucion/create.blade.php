@@ -52,7 +52,18 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="solucion">solucion</label>
+                        <label class="col-sm-2 control-label" for="solexists">Soluciones ya existentes</label>
+                        <div class="col-sm-5">
+                            <select id="solexists" class="form-control" name="solexists" >
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5 messages"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="solucion">Solucion</label>
                         <div class="col-sm-5">
                             <input id="solucion" class="form-control" type="solucion" placeholder="Intro solucion" name="solucion" value="{{ old('solucion') }}">
                         </div>
@@ -269,24 +280,26 @@
                 });
         });
 
-        /*
-         ver si la url se consigue con exito o error
-         $.ajax({
-         url: "{{ URL('pruebaajax') }}/create/ajax-state?pais_id=1",
-         type: 'GET',
-         success: function(data){
-         alert("exito");
-         },
-         error: function(data) {
-         alert('woops!'); //or whatever
-         }
-         });*/
-
 
     });
 
-    /* });*/
+    jQuery(document).ready(function($){
+        $('#categoria').change(function(){
+            //alert($(this).val());
+            $.get("{{ URL('obtenersolucionesfromcategorias') }}/get?categoria_id=" + $(this).val(),
+                function(data) {
+                    //alert("yea");
+                    var model = $('#solexists');
+                    model.empty();
 
+                    $.each(data, function(index, element) {
+                        model.append("<option value='"+ element.id +"'>" + element.solucion + "</option>");
+                    });
+                });
+        });
+
+
+    });
 
 </script>
 

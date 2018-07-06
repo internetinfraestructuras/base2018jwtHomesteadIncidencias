@@ -42,6 +42,9 @@
                         <tr>
                             <th>Servicio</th>
                             <th>Categoria</th>
+                            <th>Ver problemas</th>
+                            <th>Ver soluciones</th>
+                            <th>Ver facturables</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,6 +52,9 @@
                         <tr>
                             <td>{{ $categoria->servicio->servicio }}</td>
                             <td>{{ $categoria->categoria }}</td>
+                            <td style="text-align:center;"><a href='{{ URL::to("categoria/$categoria->id/problemas") }}' class="btn btn-default"><i class="fa fa-product-hunt"></i></a></td>
+                            <td style="text-align:center;"><a href='{{ URL::to("categoria/$categoria->id/soluciones") }}' class="btn btn-default"><i class="fa fa-skype"></i></a></td>
+                            <td style="text-align:center;"><a href='{{ URL::to("categoria/$categoria->id/facturables") }}' class="btn btn-default"><i class="fa fa-facebook"></i></a></td>
                             <!--<td style="text-align:center;"><a href='{{ URL::to("categoria/$categoria->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
                             -->
                         </tr>

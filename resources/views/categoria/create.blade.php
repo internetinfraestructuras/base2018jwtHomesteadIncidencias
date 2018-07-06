@@ -40,6 +40,14 @@
                         <div class="col-sm-5 messages"></div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="catexits">Categorias ya existentes</label>
+                        <div class="col-sm-5">
+                            <select id="catexits" class="form-control" name="catexits" >
+                            </select>
+                        </div>
+                        <div class="col-sm-5 messages"></div>
+                    </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="categoria">Categoria</label>
@@ -235,6 +243,29 @@
     }, 15000); // <-- time in milliseconds
 </script>
 
+<script>
+
+    jQuery(document).ready(function($){
+        $('#servicio').change(function(){
+            //alert($(this).val());
+            $.get("{{ URL('obtenercategoriasfromservicios') }}/get?servicio_id=" + $(this).val(),
+                function(data) {
+                    //alert("yea");
+                    var model = $('#catexits');
+                    model.empty();
+
+                    $.each(data, function(index, element) {
+                        model.append("<option value='"+ element.id +"'>" + element.categoria + "</option>");
+                    });
+                });
+        });
+
+
+
+    });
+
+
+</script>
 
 
 @endsection

@@ -46,8 +46,8 @@
                             <th>Tipo</th>
                             <th>Problema</th>
                             <th>Estado</th>
-                            <th>Creada</th>
-                            <th>Cerrada</th>
+                            <th>Fecha creación</th>
+                            <th>Fecha cierre</th>
 
                             <?php
                             if($user->tipocliente=='ADMIN' || $user->tipocliente=='TECNICO'){
@@ -74,14 +74,21 @@
                             <td>{{ $incidencia->servicio->servicio }}</td>
                             <td>{{ $incidencia->enunciado->enunciado }}</td>
                             <?php
-                                    if ($incidencia->estado=="OPEN")
+                                    if ($incidencia->estado=="ABIERTO")
                                         echo '<td  style="background-color:#00A000;color: white">'.$incidencia->estado.'</td>';
-                                    else if ($incidencia->estado=="CLOSED")
+                                    else if ($incidencia->estado=="CERRADO")
                                         echo '<td>'.$incidencia->estado.'</td>';
+                                    else if ($incidencia->estado=="POSPUESTO")
+                                        echo '<td  style="background-color:#e9cf28;color: ">'.$incidencia->estado.'</td>';
+
                             ?>
 
                             <td>{{ $incidencia->created_at }}</td>
-                            <td>{{ $incidencia->solution_at }}</td>
+                            @if ($incidencia->estado=="POSPUESTO")
+                                <td>[rev.postpuesta]<br>{{ $incidencia->pospuesto_at }}</td>
+                            @else
+                                <td>{{ $incidencia->solution_at }}</td>
+                            @endif
                             <?php
                                      if($user->tipocliente=='ADMIN' || $user->tipocliente=='TECNICO'){
                             ?>

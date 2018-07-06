@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','tipocliente','nombre_completo','cif','direccion','poblacion','intentoslogin',
+        'name', 'email', 'password','tipocliente','intentoslogin',
     ];
 
     /**
@@ -60,15 +60,6 @@ class User extends Authenticatable
     }
 
 
-    /**
-     * @param $email
-     * @throws Exception
-     */
-    public function getPoblacion(){
-
-        return $this->poblacion;
-
-    }
 
 
     /**

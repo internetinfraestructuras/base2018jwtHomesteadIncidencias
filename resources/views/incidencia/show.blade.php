@@ -25,13 +25,13 @@
                         <label class="col-sm-2 control-label" for="estado">Estado</label>
                         <div class="col-sm-5">
                             <?php
-                                if($incidencia->estado=="OPEN"){
+                                if($incidencia->estado=="ABIERTO"){
                              ?>
                                     <input id="estado" class="form-control" type="text" readonly="true" placeholder="Habitacion/Zona" name="estado" value="{{ $incidencia->estado }}"
                                            style="background-color:#00A000;color: white">
                              <?php
                                 }
-                                else if($incidencia->estado=="CLOSED")
+                                else if($incidencia->estado=="CERRADO")
                                 {
                             ?>
                                     <input id="estado" class="form-control" type="text" readonly="true" placeholder="Habitacion/Zona" name="estado" value="{{ $incidencia->estado }}">

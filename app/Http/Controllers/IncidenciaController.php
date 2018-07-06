@@ -60,7 +60,7 @@ class IncidenciaController extends Controller
 
 
         $incidencia->user_id=Auth::user()->id;
-        $incidencia->estado="OPEN";
+        $incidencia->estado="ABIERTO";
         $incidencia->save();
 
 
@@ -123,18 +123,15 @@ class IncidenciaController extends Controller
         //echo "updateando incidencia $idinci";
         $incidencia = Incidencia::find($idinci);
 
-        $incidencia->actualizar($request);
+        echo $incidencia->actualizar($request);
 
-        echo "hecho";
+        //echo "hecho";
 
-       /* Session::flash('message', 'Ticket actualizado con éxito');
+        Session::flash('message', 'Ticket actualizado con éxito');
         Session::forget('errors');
 
 
         return Redirect('user/'.$id.'/incidencia');
-*/
-
-
 
 
     }

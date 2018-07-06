@@ -50,9 +50,19 @@
                         <div class="col-sm-5 messages"></div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="probexists">Problemas ya existentes</label>
+                        <div class="col-sm-5">
+                            <select id="probexists" class="form-control" name="probexists" >
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5 messages"></div>
+                    </div>
+
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="problema">problema</label>
+                        <label class="col-sm-2 control-label" for="problema">Problema</label>
                         <div class="col-sm-5">
                             <input id="problema" class="form-control" type="problema" placeholder="Intro problema" name="problema" value="{{ old('problema') }}">
                         </div>
@@ -268,23 +278,27 @@
                 });
         });
 
-        /*
-         ver si la url se consigue con exito o error
-         $.ajax({
-         url: "{{ URL('pruebaajax') }}/create/ajax-state?pais_id=1",
-         type: 'GET',
-         success: function(data){
-         alert("exito");
-         },
-         error: function(data) {
-         alert('woops!'); //or whatever
-         }
-         });*/
-
 
     });
 
-    /* });*/
+
+    jQuery(document).ready(function($){
+        $('#categoria').change(function(){
+            //alert($(this).val());
+            $.get("{{ URL('obtenerproblemasfromcategorias') }}/get?categoria_id=" + $(this).val(),
+                function(data) {
+                    //alert("yea");
+                    var model = $('#probexists');
+                    model.empty();
+
+                    $.each(data, function(index, element) {
+                        model.append("<option value='"+ element.id +"'>" + element.problema + "</option>");
+                    });
+                });
+        });
+
+
+    });
 
 
 </script>

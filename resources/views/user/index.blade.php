@@ -40,7 +40,7 @@
                     <table id="datatable2" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>Nombre</th>
+
                             <th>Usuario Acceso</th>
                             <th>Email</th>
                             <th>Tipo</th>
@@ -51,7 +51,7 @@
                         <tbody>
                         @foreach($users as $user)
                         <tr>
-                            <td>{{ $user->nombre_completo }}</td>
+
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->tipocliente }}</td>
                             <td>{{ $user->email }}</td>

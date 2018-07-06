@@ -85,12 +85,12 @@ class UserController extends Controller
 
         $user=User::find($id);
 
-        if($user->tipocliente=='ADMIN')
+        if($user->tipocliente=='ADMIN' ||$user->tipocliente=='TECNICO')
         {
-            $incidencias=Incidencia::where('estado','OPEN')->get();
+            $incidencias=Incidencia::where('estado','ABIERTO')->orWhere('estado','POSPUESTO')->get();
         }
         else
-            $incidencias=$user->incidencias;
+            $incidencias=$user->incidencias()->where('estado','ABIERTO')->orWhere('estado','POSPUESTO')->get();
 
         return View('incidencia/index')->with('incidencias',$incidencias)->with('user',$user);
 
@@ -101,12 +101,12 @@ class UserController extends Controller
 
         $user=User::find($id);
 
-        if($user->tipocliente=='ADMIN')
+        if($user->tipocliente=='ADMIN' || $user->tipocliente=='TECNICO')
         {
             $incidencias=Incidencia::where('estado','CERRADO')->get();
         }
         else
-            $incidencias=$user->incidencias;
+            $incidencias=$user->incidencias()->where('estado','CERRADO')->get();
 
         return View('incidencia/index')->with('incidencias',$incidencias)->with('user',$user);
 

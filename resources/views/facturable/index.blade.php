@@ -43,6 +43,7 @@
                             <th>Servicio</th>
                             <th>Categoria</th>
                             <th>Facturable</th>
+                            <th>Eliminar facturable</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,8 +52,14 @@
                             <td>{{$facturable->categoria->servicio->servicio}}</td>
                             <td>{{ $facturable->categoria->categoria }}</td>
                             <td>{{ $facturable->facturable }}</td>
-                            <!--<td style="text-align:center;"><a href='{{ URL::to("facturable/$facturable->id/edit") }}' class="btn btn-default"><i class="fa fa-edit"></i></a></td>
-                            -->
+                            <td style="text-align:center;">
+                                <form id="{{$facturable->id}}" name="{{$facturable->id}}" action="{{ URL::to('facturable/'.$facturable->id)}}" method="post" novalidate>
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                    <input type="submit" value='Eliminar'>
+                                </form>
+                            </td>
+
                         </tr>
                         @endforeach
                         </tbody>

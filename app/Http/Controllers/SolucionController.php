@@ -10,12 +10,21 @@ use Illuminate\Support\Facades\Session;
 
 class SolucionController extends Controller
 {
-    public function index()
+
+    public function index($idcategoria= null)
     {
-        $soluciones = Solucion::all();
+
+        //si viene un id de categoria => filtro
+        if($idcategoria!=null) {
+            $soluciones = Categoria::find($idcategoria)->solucion;
+        }
+        else
+            $soluciones = Solucion::all();
 
         return View('solucion/index')->with('soluciones',$soluciones);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -102,6 +111,16 @@ class SolucionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $solucion = Solucion::find($id);
+        $solucion->delete();
+
+        //obtenemos todos los problemas
+        $soluciones = Solucion::all();
+
+
+        Session::flash('message', 'Solucion añadido con éxito');
+        Session::forget('errors');
+        //vamos a la vista
+        return View('solucion/index')->with('soluciones',$soluciones);
     }
 }

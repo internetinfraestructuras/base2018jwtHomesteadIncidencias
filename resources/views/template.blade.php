@@ -172,7 +172,8 @@
                             <li><a><i class="fa fa-list"></i>Tickets<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
 
-                                    <li><a href="{{ url('user/'.Auth::user()->id.'/incidencia') }}">Tickets</a></li>
+                                    <li><a href="{{ url('user/'.Auth::user()->id.'/incidencia') }}">Tickets Abiertos</a></li>
+                                    <li><a href="{{ url('user/'.Auth::user()->id.'/incidenciaclosed') }}">Tickets Cerrados</a></li>
                                     <li><a href="{{ url('user/'.Auth::user()->id.'/incidencia/create') }}">Abrir Ticket</a></li>
                                 </ul>
                             </li>

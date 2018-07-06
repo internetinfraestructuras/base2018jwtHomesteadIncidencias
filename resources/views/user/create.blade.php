@@ -18,38 +18,7 @@
                 <div class="x_content">
                     <br />
                     <form id="main" name="main" class="form-horizontal" action="{{ URL::to('user')}}" method="post" novalidate>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="cif">DNI/CIF</label>
-                            <div class="col-sm-5">
-                                <input id="cif" class="form-control" type="text" placeholder="DNI/CIF" name="cif" value="{{ old('cif') }}">
-                            </div>
-                            <div class="col-sm-5 messages">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="nombre_completo">Nombre Completo</label>
-                            <div class="col-sm-5">
-                                <input id="nombre_completo" class="form-control" type="text" placeholder="Nombre Completo" name="nombre_completo" value="{{ old('nombre_completo') }}">
-                            </div>
-                            <div class="col-sm-5 messages">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="direccion">Direccion</label>
-                            <div class="col-sm-5">
-                                <input id="direccion" class="form-control" type="text" placeholder="Direccion" name="direccion" value="{{ old('direccion') }}">
-                            </div>
-                            <div class="col-sm-5 messages">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="poblacion">Poblacion</label>
-                            <div class="col-sm-5">
-                                <input id="poblacion" class="form-control" type="text" placeholder="Poblacion" name="poblacion" value="{{ old('poblacion') }}">
-                            </div>
-                            <div class="col-sm-5 messages">
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="usuario">Usuario Acceso</label>
                             <div class="col-sm-5">
@@ -105,38 +74,23 @@
                                     <option value="ADMIN">Admin</option>
                                     @endif
 
-                                    @if (old('tipocliente') == "ALMACEN")
-                                    <option value="ALMACEN" selected>Almacen</option>
+                                    @if (old('tipocliente') == "TECNICO")
+                                    <option value="TECNICO" selected>Tecnico</option>
                                     @else
-                                    <option value="ALMACEN">Almacen</option>
+                                    <option value="TECNICO">Tecnico</option>
                                     @endif
 
-                                    @if (old('tipocliente') == "PRODUCTOR")
-                                    <option value="PRODUCTOR" selected>Productor</option>
-                                    @else
-                                    <option value="PRODUCTOR">Productor</option>
-                                    @endif
 
                                 </select>
                             </div>
                             <div class="col-sm-5 messages"></div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="usuario">IP Wowza local</label>
-                            <div class="col-sm-5">
-                                <input id="ipwowzalocal" class="form-control" type="text" placeholder="IP Wowza Local" name="ipwowzalocal" value="{{ old('ipwowzalocal') }}"
-                                       data-inputmask="'mask' : '***.***.***.***'"
-                                >
-                            </div>
-                            <div class="col-sm-5 messages">
-                            </div>
-                        </div>
-
+                        <br>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Alta</button>
+                            <div class="col-sm-offset-6 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Alta</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -228,54 +182,12 @@
                     message: "^Solo puede contener a-z y 0-9, sin espacios"
                 }
             },
-            nombre_completo: {
-                    // You need to pick a username too
-                    presence: true,
-                    // And it must be between 3 and 20 characters long
-                    length: {
-                        minimum: 5,
-                        maximum: 40,
-                        message: "^Debe contener al menos 5 characteres,máximo 40"
-                    },
-                format: {
-                    // We don't allow anything that a-z and 0-9
-                    pattern: "[a-zA-Z ]+",
-                    // but we don't care if the username is uppercase or lowercase
-                    flags: "i",
-                    message: "^Solo puede contener a-z y A-Z"
-                }
-            },
             tipocliente: {
                 // You also need to input where you live
                 presence: true,
                 // And we restrict the countries supported to Sweden
-            },
-            direccion: {
-                // You need to pick a username too
-                presence: true,
-
-            },
-            poblacion: {
-                // You need to pick a username too
-                presence: true,
-
-            },
-            ipwowzalocal: {
-                presence: {message: "^Indique una Direccion IP"},
-                format: {
-                    // We don't allow anything that a-z and 0-9
-                    pattern:  "^([0-9]{1,3}\.){3}[0-9]{1,3}$",
-                    message: "^Formato incorrecto"
-                },
-            },
-            cif: {
-                presence: true,
-                /*format: {
-                    // We don't allow anything that a-z and 0-9
-                    pattern:  /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/,
-                    message: "^Formato incorrecto"
-                }*/
             }
+
         };
 
         //customizar mensaje error email

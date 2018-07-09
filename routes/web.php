@@ -18,6 +18,9 @@ Route::get('/', function () {
 });
 
 
+
+
+
 /* RUTAS AJAX AUTORELLENAR SELECTS*/
 
 //obtener categorias from servicio
@@ -83,8 +86,8 @@ Route::get('main', function (){
 //han de estar autenticadas o si no, por defecto se va al /login
 Route::group(['middleware' => 'auth'], function () {
 
-    //ruta users
-
+    //esquema general de servicios enunciados problemas soluciones y facturables
+    Route::get('esquema', [ 'uses' => 'UserController@esquema']);
 
     //user resource rutas
     Route::resource("user","UserController");

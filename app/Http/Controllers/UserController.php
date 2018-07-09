@@ -18,6 +18,19 @@ use App\Servicio;
 class UserController extends Controller
 {
 
+    /**
+     * devuelve el esquema de servicios,enunciados,probs,sol y factr
+     */
+    public function esquema(){
+
+        $servicios = Servicio::all();
+        /*$enunciados = Enunciado::all();
+        $categorias = Categoria::all();
+        $problemas = Problema::all();
+        $soluciones*/
+
+        return View('user/esquema')->with('servicios',$servicios);
+    }
 
     /**
      * Devuelve la vista con las incidencias

@@ -120,6 +120,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="{{ url('user')}}">Usuarios</a></li>
                                     <li><a href="{{ URL::to('user/create') }}">Alta Usuario</a></li>
+                                    <li><a href="{{ url('esquema')}}">Esquema</a></li>
 
                                 </ul>
                             </li>

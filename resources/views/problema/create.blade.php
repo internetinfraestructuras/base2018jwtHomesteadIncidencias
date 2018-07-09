@@ -272,10 +272,15 @@
                     var model = $('#categoria');
                     model.empty();
 
+                    model.append("<option value='seleccione'>Seleccione</option>");
                     $.each(data, function(index, element) {
                         model.append("<option value='"+ element.id +"'>" + element.categoria + "</option>");
                     });
                 });
+
+
+
+
         });
 
 

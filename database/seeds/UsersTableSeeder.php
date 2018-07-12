@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'telefonia@nexwrf.es',
             'tipocliente' => 'ADMIN',
-            'password' => bcrypt('telereq1430'),
+            'password' => bcrypt('******'),
         ]);
 
         DB::table('users')->insert([
